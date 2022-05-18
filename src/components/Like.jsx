@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+import { useState } from "react";
+
+export const Like = () => {
+  const [color, setColor] = useState();
+
+  function changeColor() {
+    // setColor (color= {'error'})
+  }
+
+  return;
+};
