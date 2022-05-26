@@ -61,8 +61,9 @@ const products = [
     price: 1600,
   },
 ];
-// console.log(products.map((product) => product.name));
 
-export const Products = ({ onBuy }) => {
-  return products.map((product) => <ProductCard key={product.id} product={product} onBuy={onBuy} />);
+export const Products = ({ onBuy, toggleIsTitle }) => {
+  return products.map((product) => (
+    <ProductCard key={product.id} product={product} onBuy={onBuy} toggleIsTitle={toggleIsTitle} />
+  ));
 };

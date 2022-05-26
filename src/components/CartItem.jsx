@@ -1,13 +1,23 @@
 import { Close } from "@mui/icons-material";
-import { IconButton, Typography } from "@mui/material";
+import { IconButton, Typography, CardMedia, Button, Container } from "@mui/material";
 
-export const CartItem = ({ removeOrder, id, name, price, quality, product }) => {
+export const CartItem = ({ purchase, removeOrder }) => {
+  const handleRemove = () => {
+    removeOrder(purchase);
+  };
+
   return (
-    <Typography variant="body1">
-      {product.name} ${product.price}
-      <IconButton onClick={() => product.removeOrder(product.id)}>
-        <Close />
-      </IconButton>
-    </Typography>
+    <>
+      <Container sx={{ m: 2 }}>
+        <Typography variant="h5">{purchase.name}</Typography>
+        <IconButton onClick={handleRemove}>
+          <Close />
+        </IconButton>
+        <CardMedia image={purchase.img} component="img" sx={{ height: 150, width: "auto", mx: "auto" }} />
+        <Button variant="contained" sx={{ ml: "auto" }}>
+          ${purchase.price} Buy
+        </Button>
+      </Container>
+    </>
   );
 };

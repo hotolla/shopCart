@@ -8,9 +8,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Grid from "@mui/material/Grid";
 import { Button, CardMedia, IconButton } from "@mui/material";
 
-export const ProductCard = ({ product, onBuy }) => {
+export const ProductCard = ({ product, onBuy, toggleIsTitle }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  console.log(product);
 
   function toggleIsFavorite() {
     setIsFavorite((isFavorite) => !isFavorite);
@@ -38,8 +37,7 @@ export const ProductCard = ({ product, onBuy }) => {
           <IconButton color={isFavorite ? "error" : "inherit"} aria-label="add to favorites" onClick={toggleIsFavorite}>
             <FavoriteIcon />
           </IconButton>
-
-          <Button variant="contained" sx={{ ml: "auto" }} onClick={handleClick}>
+          <Button variant="contained" sx={{ ml: "auto" }} onClick={handleClick} onMouseEnter={toggleIsTitle}>
             Buy
           </Button>
         </CardActions>

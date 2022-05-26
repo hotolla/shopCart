@@ -7,13 +7,11 @@ import { Header } from "./components/Header";
 import { Cart } from "./components/Cart";
 
 export const App = () => {
-  const [order, onAction] = useState([]);
-
   const [isCardOpen, setCardOpen] = useState(false);
   const [purchases, setPurchases] = useState([]);
 
-  function removeOrder(goods) {
-    onAction(order.filter((product) => product.id !== goods));
+  function removeOrder({ id }) {
+    setPurchases(purchases.filter((purchase) => id !== purchase.id));
   }
 
   const buyProduct = (product) => {

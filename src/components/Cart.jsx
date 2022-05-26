@@ -1,43 +1,28 @@
-import {
-  Drawer,
-  ListItem,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  IconButton,
-  CardHeader,
-  CardMedia,
-} from "@mui/material";
-// import { CartItem } from "./CartItem";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Drawer, ListItem, List, ListItemText, Divider, IconButton } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { Purchases } from "./Purchases";
 
-export const Cart = ({ purchases, cardOpen, closeCard, productOfBuy }) => {
-  const goods = JSON.stringify(purchases);
-  console.log(goods);
+export const Cart = ({ purchases, cardOpen, closeCard, removeOrder, setPurchases, isCardOpen }) => {
+  let title = null;
+  
+  function toggleIsTitle() {
+    setPurchases((isTitle) => !isTitle);
+  }
+
   return (
     <Drawer anchor="right" open={cardOpen} onClose={closeCard}>
       <List sx={{ width: "350px" }}>
         <ListItem>
-          <ListItemIcon>
-            <IconButton color="inherit" aria-label="add to shopping cart">
-              <AddShoppingCartIcon />
-            </IconButton>
-          </ListItemIcon>
           <ListItemText primary="Basket" />
+          <IconButton onClick={closeCard}>
+            <Close />
+          </IconButton>
         </ListItem>
         <Divider />
-
-        <ListItem>no products selected</ListItem>
-        {/* <CardHeader title={productOfBuy.name} />
-        <CardMedia image={productOfBuy.img} component="img" sx={{ height: 280, width: "auto", mx: "auto" }} /> */}
-
-        {/* {!order.length ? (
-        ) : (
-          order.map((product) => {
-            // <BasketItem key={product.name} removeOrder={removeOrder} {...product} />;
-          })
-        )} */}
+        <ListItem alignItems="center" components={(title = purchases === [] ? "no products selected" : "")}>
+          {title}
+        </ListItem>
+        <Purchases purchases={purchases} removeOrder={removeOrder} />
       </List>
     </Drawer>
   );
